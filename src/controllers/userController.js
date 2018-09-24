@@ -1,3 +1,5 @@
+const User = require("../models/User");
+
 module.exports = {
   index(req, res) {
     return res.send("index");
@@ -7,8 +9,10 @@ module.exports = {
     return res.send("show");
   },
 
-  store(req, res) {
-    return res.send("store");
+  async store(req, res) {
+    const user = await User.create(req.body);
+
+    return res.json(user);
   },
 
   update(req, res) {
